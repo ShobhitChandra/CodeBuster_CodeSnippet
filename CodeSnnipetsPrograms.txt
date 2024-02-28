@@ -1,0 +1,93 @@
+Prefix :
+Binnary search
+Description :
+This ia function for seraching an element in the shorted arrays.Time Complaxity of this search is O(log n).Tis is only useful at the time of the when we have shorted array.
+Code :
+int BinarySearchInArray(int key, int size, int array[]);// a key to find ,the size of array,the array.
+int BinarySearchInArray(int key, int size, int array[])
+{
+    int start = 0;
+    int End = size;
+    while (End >= start)
+    {
+        int mid = (start + End) / 2;
+        if (key == array[mid])
+        {
+            return mid;
+        }
+        else if (key >= array[mid])
+        {
+            start = mid + 1;
+        }
+        else
+        {
+            End = mid - 1;
+        }
+    }
+    return -1;
+}
+
+Prefix :
+Factorial Calculator
+Description :
+This ia function for finding the factorila of the enter number you have to enter a number as parameter.Time Complaxity of this code is O(n).Iterative way.
+Code :
+int FactoralCalculator (int number);// the number whose factorial you want to calculate.
+int FactoralCalculator (int number){
+    int factorial = 1;
+    if (number > 0)
+    {
+        for (int i = number; i > 0; i--)
+        {
+            factorial *= i ;
+        }
+    }
+    else if (number == 0)
+    {
+        factorial = 1;
+    }
+    else
+    {
+        cout << "Please enter a valid number to calculate the Factorial";
+    }
+    return factorial;
+}
+
+Prefix :
+Decimal To Binnary
+Description :
+This ia function for Convertindg a Decimal number into a binnary number.Time Complaxity of this code is O(n).
+Code :
+int DecimalToBinnaryConvertor ( int number_Decimal);
+int DecimalToBinnaryConvertor ( int number_Decimal){
+    int number_Binnary = 0;
+    int base = 1;
+    while (number_Decimal)
+    {
+        int digits = number_Decimal % 2;
+        number_Binnary = base * digits + number_Binnary ;
+        number_Decimal /= 2;
+        base *= 10;
+    }
+    return number_Binnary;
+}
+
+Prefix :
+Binnary To Decimal
+Description :
+This ia function for Convertindg a binnary number into a decimal number.Time Complaxity of this code is O(n).
+Code :
+double BinnaryToDecimalConvertor ( int number_Binnary);
+double BinnaryToDecimalConvertor ( int number_Binnary){
+    double number_Decimal = 0;
+    int i = 1;
+    while (number_Binnary)
+    {
+        int digits = number_Binnary % 10;
+        number_Decimal += digits * i;
+        number_Binnary /= 10;
+        i *= 2;
+    }
+    return number_Decimal;
+}
+
