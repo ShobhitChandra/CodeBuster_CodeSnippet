@@ -1,7 +1,7 @@
 Prefix :
 Binnary search
 Description :
-This ia function for seraching an element in the shorted arrays.Time Complaxity of this search is O(log n).Tis is only useful at the time of the when we have shorted array.
+This is a function for seraching an element in the shorted arrays.Time Complaxity of this search is O(log n).Tis is only useful at the time of the when we have shorted array.
 Code :
 int BinarySearchInArray(int key, int size, int array[]);// a key to find ,the size of array,the array.
 int BinarySearchInArray(int key, int size, int array[])
@@ -30,7 +30,7 @@ int BinarySearchInArray(int key, int size, int array[])
 Prefix :
 Factorial Calculator
 Description :
-This ia function for finding the factorila of the enter number you have to enter a number as parameter.Time Complaxity of this code is O(n).Iterative way.
+This is a function for finding the factorila of the enter number you have to enter a number as parameter.Time Complaxity of this code is O(n).Iterative way.
 Code :
 int FactoralCalculator (int number);// the number whose factorial you want to calculate.
 int FactoralCalculator (int number){
@@ -56,7 +56,7 @@ int FactoralCalculator (int number){
 Prefix :
 Decimal To Binnary
 Description :
-This ia function for Convertindg a Decimal number into a binnary number.Time Complaxity of this code is O(n).
+This is a function for Convertindg a Decimal number into a binnary number.Time Complaxity of this code is O(n).
 Code :
 int DecimalToBinnaryConvertor ( int number_Decimal);
 int DecimalToBinnaryConvertor ( int number_Decimal){
@@ -75,7 +75,7 @@ int DecimalToBinnaryConvertor ( int number_Decimal){
 Prefix :
 Binnary To Decimal
 Description :
-This ia function for Convertindg a binnary number into a decimal number.Time Complaxity of this code is O(n).
+This is a function for Convertindg a binnary number into a decimal number.Time Complaxity of this code is O(n).
 Code :
 double BinnaryToDecimalConvertor ( int number_Binnary);
 double BinnaryToDecimalConvertor ( int number_Binnary){
@@ -91,3 +91,361 @@ double BinnaryToDecimalConvertor ( int number_Binnary){
     return number_Decimal;
 }
 
+Prefix :
+Number of digits Counter
+Description :
+This is a function for Counting the number of digits in the enterned integer.Time Complaxity of this code is O(1).
+Code :
+int numberofDigittsInthenumber(int number);
+int numberofDigittsInthenumber(int number)
+{
+    int i = 0;
+    while (number)
+    {
+        i++;
+        number /= 10;
+    }
+    return i;
+}
+
+Prefix :
+Amstongnumber Checker
+Description :
+This is a function for checking the number given in the parmeters of the function is amastrong or not . This snippet also contain a function for number of digits in the enterd function. This function to implement one should include math.h file.
+Code :
+int numberofDigittsInthenumber(int number);
+int numberofDigittsInthenumber(int number)
+{
+    int i = 0;
+    while (number)
+    {
+        i++;
+        number /= 10;
+    }
+    return i;
+}
+void armstrongChecker(int number);
+void armstrongChecker(int number)
+{
+    double sum = 0;
+    int digits, temp;
+    temp = number;
+    while (number)
+    {
+        digits = number % 10;
+        sum += pow(digits,  numberofDigittsInthenumber(number));
+        number /= 10;
+    }
+    if (sum == temp)
+    {
+        cout << "The Number you enterd is a Armstrong number " << endl;
+    }
+    else
+    {
+        cout << "The Number you enterd in not an armstrong number " << endl;
+    }
+}
+
+Prefix :
+Decimal To Hexadecimal
+Description :
+This is a function for Convertindg a Decimal number into a Hexadecimal number.This function return a string Hexadecimal number. The Time Complaxity of this code is O(n).
+Code :
+string DecimalToHexadecimalConvertor(int decimal_no);
+string DecimalToHexadecimalConvertor(int decimal_no)
+{
+    int x = 1;
+    string answer;
+    while (x <= decimal_no)
+    {
+        x *= 16;
+    }
+    x /= 16;
+    while (x > 0)
+    {
+        int last_Digit = decimal_no / x;
+        decimal_no -= last_Digit * x;
+        x /= 16;
+        if (last_Digit <= 9)
+        {
+            answer = answer + to_string(last_Digit);
+        }
+        else
+        {
+            char c = 'A' - last_Digit + 10;
+            answer.push_back(c);
+        }
+    }
+    return answer;
+}
+Prefix :
+Decimal To Octal
+Description :
+This is a function for Convertindg a Decimal number into a Octal number.This function return a integer wich is a Octal number. The Time Complaxity of this code is O(n).
+Code :
+int DecimalToOctalConvertor (int decimal);
+int DecimalToOctalConvertor (int decimal)
+{
+    int octal = 0;
+    while (decimal )
+    {
+        int remainder;
+        remainder = decimal % 8;
+        octal += remainder*10;
+        decimal /= 8; 
+    }
+    return octal;
+}
+Prefix :
+Even Or Odd number Checker
+Description :
+This is a function for Checkin the number pass in the parameter of the function is even  or odd. The Time Complaxity of this code is O(1).
+Code :
+void EvenOddChecker(int);
+void EvenOddChecker(int num)
+{
+    if (num % 2 == 0)
+    {
+        cout << "The number enterd is even\n";
+    }
+    else
+    {
+        cout << "The number entered is odd\n";
+    }
+    return;
+}
+
+Prefix :
+All Factors Printer
+Description :
+This is a function for printing all the factors of the number which is passed in the parameters of the function .
+Code :
+void FactorsPrinter(int number);
+void FactorsPrinter(int number)
+{
+    cout << "The factors of the the number have you enterd is :" << endl;
+    cout << "1";
+    for (int i = 2; i <= number; i++)
+    {
+        if (number % i == 0)
+        {
+            cout << " * " << i;
+        }
+    }
+}
+
+Prefix :
+Fibnnacci Series Printer upto k th element
+Description :
+This is a function for printing the elements of Fibnnacci series upto enterd k'th element passed in the parameters .
+Code :
+void FibonnacciSeriesPrinter(int n);
+void FibonnacciSeriesPrinter(int n)
+{
+    int a = 0, b = 1;
+    cout << "The fibonnacci Series you wanted is :" << endl;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (i == 1)
+        {
+            cout << a << " ";
+        }
+        int temp = b;
+        cout << b << " ";
+        b += a;
+        a = temp;
+    }
+}
+
+Prefix :
+Hexadecimal To Decimal Convertor
+Description :
+This is a function for Converting the  hexadecimal number of datatype string which is passed in the  function as parameter  and returs a integer decimal number. The Time Complaxity of this code is O(n).
+Code :
+int HexadecimalToDecimal (string n);
+int HexadecimalToDecimal (string n)
+{
+    int answer = 0;
+    int x = 1;
+    int s = n.size();
+    for (int i = s-1; i >= 0; i--)
+    {
+        if (n[i] >= '0' && n[i] <= '9')
+        {
+            answer += x*(n[i] - '0');
+        }
+        else if (n[i] >= 'A' && n[i] <= 'F')
+        {
+            answer += x*(n[i]- 'A'+10);
+        }
+        x *= 16;
+    }
+    return answer;        
+}
+
+Prefix :
+Maximum and Minimum of an Array
+Description :
+This is a function for finding the maximum and minimum number in the inputed array which is passed in the function as parameter.For this function to emplement one have to include limit file in your cpp Code. The Time Complaxity of this code is O(n).
+Code :
+int MaximumMinimumNum(int num[3]);
+int MaximumMinimumNum(int num[3])
+{
+    int max =INT_MIN, min = INT_MAX;
+    for (int i = 0; i < 3; i++)
+    {
+        if (max < num[i])
+        {
+            max = num[i];
+        }
+        if (min > num[i])
+        {
+            min = num[i];
+        }
+    }
+    cout << "The Maximum of the entered number is :" << max << endl;
+    cout << "The Minimum of the entered number is :" << min << endl;
+    return 0;
+}
+
+Prefix :
+Multiplication Table Printer
+Description :
+This is a function for printing the multiplication table of the number which is passed as parameter in the function. The Time Complaxity of this code is O(n).
+Code :
+void MultiplicationTableDisplay(int);
+void MultiplicationTableDisplay(int number)
+{
+    for (int i = 1; i < 11; i++)
+    {
+        cout << number << " * " << i << " = " << i * number << endl;
+    }
+    return;
+}
+
+Prefix :
+Octal To Decimal Convertor
+Description :
+This is a function for Converting the  Octal number of datatype Integer which is passed in the  function as parameter  and returs a integer decimal number. The Time Complaxity of this code is O(n).
+Code :
+int OctalToDecimalConvertor (int octal);
+int OctalToDecimalConvertor (int octal)
+{
+    int org_octal = octal;
+    int decimal = 0;
+    int No_of_dig = 0;
+    while (octal)
+    {
+        octal /= 10;
+        No_of_dig ++;
+    }
+    for (int i = 0; i < No_of_dig; i++)
+    {
+        int dig;
+        dig = org_octal%10;
+        decimal += dig*pow(8,i);
+        org_octal /= 10;
+    }
+    return decimal;
+}
+
+Prefix :
+Prime Number Checker
+Description :
+This is a function for Checking the number which is passed as parameter in the function is prime or not. The Time Complaxity of this code is O(n).
+Code :
+void PrimeNumberChecker(int);
+void PrimeNumberChecker(int number)
+{
+    for (int i = 2; i <= number / 2; i++)
+    {
+        if (number % i == 0)
+        {
+            cout << "The Number You Entered Is Not Prime" << endl;
+            return ;
+        }
+    }
+    cout << "The Number You Enterd Is Prime" << endl;
+    return ;
+}
+
+Prefix :
+Print All the Prime Number in the given range
+Description :
+This is a function for Printing all the prime numbers between the lower and upper bound pass as parameter in the function. The Time Complaxity of this code is O(Square(n)).
+Code :
+void PrimeNumberDisplayInRange(int lower_number, int upper_numer);
+void PrimeNumberDisplayInRange(int lower_number, int upper_numer)
+{
+    int j = 0;
+    for (int i = lower_number; i <= upper_numer; i++)
+    {
+        for (j = 2; j < i; j++)
+        {
+            if (i % j == 0)
+            {
+                break;
+            }
+        }
+        if (i == j)
+        {
+            cout << i << " ";
+        }
+    }
+}
+
+Prefix :
+Print all odd numbers form 0 to n
+Description :
+This is a function for Printing all the odd numbers between 0 to n which is pass as parameter in the function. The Time Complaxity of this code is O(n).
+Code :
+void PrintOddNumber(int);
+void PrintOddNumber(int number)
+{
+    for (int i = 1; i < number; i++)
+    {
+
+        if (i % 2 == 0)
+        {
+            continue;
+        }
+        else
+        {
+            cout << i << " ";
+        }
+    }
+}
+
+Prefix :
+Reversing an Integer
+Description :
+This is a function for Reversing an Integer which is passed as parameter in the function. The Time Complaxity of this code is O(n).
+Code :
+int ReverseOfNumber(int number);
+int ReverseOfNumber(int number)
+{
+    int rev_number = 0;
+    while (number)
+    {
+        int digits = number % 10;
+        rev_number = rev_number * 10 + digits;
+        number /= 10;
+    }
+    return rev_number;
+}
+
+Prefix :
+Sum of first n Natural number
+Description :
+This is a function for returning integer which is sum of first n natural number where n is an integer passed as parameter. The Time Complaxity of this code is O(n).
+Code :
+int SumOfFirstNNaturalNo(int);
+int SumOfFirstNNaturalNo(int number){
+    int sum=0;
+    for (int i = 1; i <= number; i++)
+    {
+        sum += i;
+    }
+    return sum;
+}
