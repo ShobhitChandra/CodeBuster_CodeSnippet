@@ -505,3 +505,115 @@ class Queue{
     }
     
 };
+
+
+
+Prefix :
+Implementing a stack using array
+Description :
+This is the code for implementing a stack using an array.
+Code :
+
+#include <iostream>
+using namespace std;
+
+class Stack
+{
+private:
+    int MAX_SIZE; // Maximum size of the stack
+    int *stackArray;
+    int top; // Index of the top element
+
+public:
+    Stack(int MAX_SIZE) // Constructor
+    {
+        this->MAX_SIZE = MAX_SIZE;
+        top = -1;
+        stackArray = new int[MAX_SIZE];
+    }
+    void push(int element);      // Pushes an element onto the stack
+    int pop();                   // Pops the top element from the stack
+    bool isEmpty();              // Checks if the stack is empty
+    int getTopIndex();           // Returns the index of the top element
+    int getElementAt(int index); // Returns the element at the specified index
+};
+
+void Stack::push(int element)
+{
+    if (top == MAX_SIZE - 1)
+    {
+        // Stack is full
+        cout << "Stack Overflow!" << endl;
+        return;
+    }
+    top = top + 1;
+    stackArray[top] = element;
+}
+
+int Stack::pop()
+{
+    if (top == -1)
+    {
+        // Stack is empty
+        cout << "Stack Underflow!" << endl;
+        return -1; // Or throw an exception
+    }
+    return stackArray[top--];
+}
+
+bool Stack::isEmpty()
+{
+    if (top == -1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+int Stack::getTopIndex()
+{
+    return top;
+}
+
+int Stack::getElementAt(int index)
+{
+    return stackArray[index];
+}
+
+int main()
+{
+    Stack stack(5);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.push(5);
+    cout << "Elements in the stack: ";
+    for (int i = stack.getTopIndex(); i >= 0; i--)
+    {
+        cout << stack.getElementAt(i) << " ";
+    }
+    cout << endl;
+
+    int p1 = stack.pop();
+    cout << "Popped element: " << p1 << endl;
+
+    cout << "Remaining elements in the stack: ";
+    for (int i = stack.getTopIndex(); i >= 0; i--)
+    {
+        cout << stack.getElementAt(i) << " ";
+    }
+    cout << endl;
+
+    if (stack.isEmpty())
+    {
+        cout << "Stack is empty!!" << endl;
+    }
+    else
+    {
+        cout << "stack is not empty" << endl;
+    }
+
+    return 0;
+}
