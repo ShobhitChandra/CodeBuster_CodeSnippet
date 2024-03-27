@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-void CodeSnippetManager:: Add_Snippets(const string& tag, const string& code)
+void CodeSnippetManager:: Add_Snippets(string& tag, const string& code)
 {
     snippets[tag] = code;
 }
