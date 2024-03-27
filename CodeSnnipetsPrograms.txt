@@ -617,3 +617,289 @@ int main()
 
     return 0;
 }
+
+Prefix :
+Implementing a stack using Linked List
+Description :
+This is the code for implementing a stack using an Linked list.
+Code :
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int val;
+    node *next;
+
+    node(int value)
+    {
+        val = value;
+        next = nullptr;
+    }
+};
+
+class stack
+{
+private:
+    node *top;
+    int size;
+
+public:
+    stack(int value)
+    {
+        node *newnode = new node(value);
+        top = newnode;
+        size = 1;
+    }
+    void get_top()
+    {
+        cout << "Top element in stack is: " << top->val << endl;
+    }
+    void size_stack()
+    {
+        cout << "size of the stack is: " << size << endl;
+    }
+    void push_stack(int value)
+    {
+        node *newnode = new node(value);
+        newnode->next = top;
+        top = newnode;
+        size++;
+    }
+    int pop_stack()
+    {
+        if (size < 0)
+        {
+            cout << "STACK IS EMPTY" << endl;
+        }
+        else
+        {
+            node *temp = top;
+            int pop_val = top->val;
+            top = top->next;
+            delete temp;
+            size--;
+            return pop_val;
+        }
+    }
+    void isempty()
+    {
+        if (size < 0)
+        {
+            cout << "STACK IS EMPTY" << endl;
+        }
+        else
+        {
+            cout << "STACK IS NOT EMPTY!" << endl;
+        }
+    }
+    void print_stack()
+    {
+        node *temp = top;
+        while (top)
+        {
+            cout << temp->val << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+};
+
+int main()
+{
+
+    stack *st = new stack(4);
+    st->push_stack(5);
+    st->push_stack(6);
+    st->push_stack(7);
+    st->push_stack(8);
+    st->get_top();
+    st->pop_stack();
+    st->isempty();
+    st->print_stack();
+
+        return 0;
+}
+
+Prefix :
+program in evaluate from infix to postfix using stack.
+a stack.
+Description :
+Implementation of C++ program to evaluate a infix to postfix expression using stack.
+
+Code :
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class Node{
+    public :
+  int size;
+  int top;
+  char *arr;
+};
+void push(class Node *s,char a){
+        s ->top++;
+        s->arr[s->top] = a;
+}
+char pop(class Node *s){
+    char val = s->arr[s->top];
+    s->top--;
+    
+    return val;
+}
+int isOperator(char a){
+    if(a == '+' || a == '-' || a == '*' || a == '/'){
+        return 1;
+    }
+    return 0;
+}
+int prec(char x){
+    if(x == '*' || x == '/'){
+        return 2;
+    }
+    else if(x == '+' || x == '-'){
+        return 1;
+    }
+    return 0;
+}
+
+char stackTop(class Node *s){
+    return s->arr[s->top];
+}
+int isEmpty(class Node *s){
+    if(s->top == -1){
+        return 1;
+    }
+    return 0;
+}
+void infixToPostfix(char *exp){
+    class Node *s;
+    s = (class Node*)malloc(sizeof(class Node));
+    s->size = 100;
+    s->top = -1;
+    s->arr = (char *)malloc(s->size*sizeof(char));
+    int j= 0;
+    int i = 0;
+    char exp2[100];
+    while(exp[i]!= '\0'){
+        if(!isOperator(exp[i])){
+            exp2[j]= exp[i];
+            j++; 
+            i++;
+        }
+        else{
+            if(prec(exp[i])>prec(stackTop(s))){
+                push(s,exp[i]);
+                i++;
+            }
+            else{
+                exp2[j] = pop(s);
+                j++;
+            }
+        }
+    }
+    while(!isEmpty(s)){
+        exp2[j] = pop(s);
+        j++;
+    }
+exp2[j] = '\0';
+ 
+     cout<<exp2<<endl;
+  
+}
+
+int main() {
+    char *exp = "2+3*1+5";
+infixToPostfix(exp);
+
+    return 0;
+}
+
+Prefix :
+program to check if a given string of parentheses is balanced.
+a stack.
+Description :
+Implementation of C++ program to check if a given string of parentheses is balanced.The string consists of only parentheses characters ’(’, ’)’, ’’, ’’, ’[’ and ’]’.The program should return true if the parentheses are balanced and false otherwise.
+
+Code :
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+using namespace std;
+class Node {
+    public :
+    int size;
+    int top;
+    char *arr;
+};
+
+int match(char a,char b){
+    if((a == '(' && b == ')') ||( a == '{' && b == '}' )||( a == '[' && b == ']')){
+        return 1;
+    }
+    return 0;
+}
+int isEmpty(class Node *s){
+    if(s->top == -1){
+        return 1;
+    }
+    return 0;
+}
+
+void push(class Node *s,char x){
+    s->top++;
+    s->arr[s->top] = x;
+}
+
+char pop(class Node *s){
+    int val = s->arr[s->top];
+    s->top--;
+  
+  return val;  
+}
+int Parenthesis(char *exp){
+    
+    class Node *stack;
+    stack = (class Node*)malloc(sizeof(class Node));
+    stack -> size = 100;
+    stack -> top = -1;
+    stack -> arr = (char*)malloc(stack->size*sizeof(char));
+    for(int i=0;exp[i]!='\0';i++){
+        if(exp[i] == '(' || exp[i] == '{' || exp [i] == '['){
+            push(stack,exp[i]);
+        }
+        else if(exp[i] == ')' || exp[i] == '}' || exp [i] == ']'){
+            if(isEmpty(stack)){
+                return 0;
+            }
+            char poped = pop(stack);
+     if(!match(poped,exp[i])){
+         return 0;
+     } 
+     }   
+  }
+  if(isEmpty(stack)){
+      return 1;
+  }
+  else{
+  return 0;
+  }
+}
+int main() {
+char exp = "{1}-2(2-3}";
+    
+    if((Parenthesis(exp))){
+        cout<<"Expression is balanced"<<endl;
+    }
+    else{
+        cout <<"Expression is not balanced"<<endl;
+    }
+
+    return 0;
+}
+
+
+
