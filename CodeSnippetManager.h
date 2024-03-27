@@ -14,8 +14,8 @@ class CodeSnippetManager{
     void Add_Snippets(string& tag,const string& code);
     void Retrieve_Snippets(const string& tag);
 
-    void Save_to_file(const string& filename);
-    void Load_to_file(const string& filename);  
+    bool Save_to_file(const string& filename);
+    bool Load_to_file(const string& filename);  
 
 
     
