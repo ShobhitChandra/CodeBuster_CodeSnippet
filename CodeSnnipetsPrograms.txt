@@ -450,60 +450,131 @@ int SumOfFirstNNaturalNo(int number){
     return sum;
 }
 
-class Queue{
-    private:
-        int* arr;
-        int front;
-        int rear;
-        int size;
-    public:
-        Queue(){
-            front = 0;
-            rear = 0;
-            size = 10000;
-            arr = new int[size];
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int value) {
+        data = value;
+        next = nullptr;
+    }
+};
+
+Prefix :
+Implementing a queue using Linked List.
+Description :
+This is the code for implementing a queue using a linked list.
+
+#include <iostream>
+using namespace std;
+
+class Queue {
+private:
+    Node* front;
+    Node* rear;
+    int size;
+    int capacity;
+
+public:
+    Queue(int cap) {
+        front = rear = nullptr;
+        size = 0;
+        capacity = cap;
+    }
+
+    void enqueue(int value) {
+        if (isFull()) {
+            cout << "Queue is full. Cannot enqueue." << endl;
+            return;
         }
-    void enqueue(int val){
-        if(rear == size){
-            cout << "Queue is full...";
+
+        Node* newNode = new Node(value);
+        if (isEmpty()) {
+            front = rear = newNode;
+        } else {
+            rear->next = newNode;
+            rear = newNode;
+        }
+        size++;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Cannot dequeue." << endl;
+            return;
+        }
+
+        Node* temp = front;
+        front = front->next;
+        delete temp;
+        size--;
+        if (isEmpty()) {
+            rear = nullptr;
+        }
+    }
+
+    bool isEmpty() {
+        return size == 0;
+    }
+
+    bool isFull() {
+        return size == capacity;
+    }
+
+    Queue copy() {
+        Queue copiedQueue(capacity);
+        Node* temp = front;
+        while (temp != nullptr) {
+            copiedQueue.enqueue(temp->data);
+            temp = temp->next;
+        }
+        return copiedQueue;
+    }
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Cannot peek." << endl;
+            return -1; 
+        }
+        return front->data;
+    }
+    void clear() {
+        while (!isEmpty()) {
+            dequeue();
+        }
+    }
+    int size() {
+        return size;
+    }
+    int frontElement() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Cannot get front element." << endl;
+            return -1;
         }else{
-            rear = val;
-            rear = rear + 1;
+        return front->data;
         }
     }
-    void dequeue(){
-        if(rear == front){
-            cout << "Queue is empty...";
+    int rearElement() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Cannot get rear element." << endl;
+            return -1;
         }else{
-            front = -1;
-            front = front + 1;
-            if(front == rear){
-                front = 0;
-                rear = 0;
-            }
+        return rear->data;
         }
     }
-    int isEmptyorFull(){
-        if(rear = front){
-            return 1;
-        }else if(rear == size){
-            return 0;
-        }else{
-            cout<< "Neither empty nor full";
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Nothing to display." << endl;
+            return;
         }
-    }
-    Queue copy(){
-        int* arr2;
-        int front2=front;
-        int rear2=rear;
-        arr2 = new int[size];
-        while((*arr2 + front2) != rear){
-            *(arr2 + front2) = *(arr + front2);
-            front2 = front2 + 1;
+        Node* temp = front;
+        cout << "Queue elements: ";
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->next;
         }
-        front2 = front;
+        cout << endl;
     }
-    
 };
 
 
