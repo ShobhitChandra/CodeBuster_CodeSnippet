@@ -1,7 +1,7 @@
 Prefix :
 Binnary search
 Description :
-This is a function for seraching an element in the shorted arrays.Time Complaxity of this search is O(log n).Tis is only useful at the time of the when we have shorted array.
+This is a function for searching an element in the shorted arrays.Time Complaxity of this search is O(log n).Tis is only useful at the time of the when we have shorted array.
 Code :
 int BinarySearchInArray(int key, int size, int array[]);// a key to find ,the size of array,the array.
 int BinarySearchInArray(int key, int size, int array[])
@@ -30,7 +30,7 @@ int BinarySearchInArray(int key, int size, int array[])
 Prefix :
 Factorial Calculator
 Description :
-This is a function for finding the factorila of the enter number you have to enter a number as parameter.Time Complaxity of this code is O(n).Iterative way.
+This is a function for finding the factorial of the enter number you have to enter a number as parameter.Time Complaxity of this code is O(n).Iterative way.
 Code :
 int FactoralCalculator (int number);// the number whose factorial you want to calculate.
 int FactoralCalculator (int number){
