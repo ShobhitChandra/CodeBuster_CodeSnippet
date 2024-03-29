@@ -522,6 +522,7 @@ public:
         return size == capacity;
     }
 
+
     Queue copy() {
         Queue copiedQueue(capacity);
         Node* temp = front;
@@ -531,6 +532,8 @@ public:
         }
         return copiedQueue;
     }
+
+
     int peek() {
         if (isEmpty()) {
             cout << "Queue is empty. Cannot peek." << endl;
@@ -538,14 +541,19 @@ public:
         }
         return front->data;
     }
+
     void clear() {
         while (!isEmpty()) {
             dequeue();
         }
     }
+
     int size() {
         return size;
     }
+
+
+
     int frontElement() {
         if (isEmpty()) {
             cout << "Queue is empty. Cannot get front element." << endl;
@@ -554,6 +562,9 @@ public:
         return front->data;
         }
     }
+
+
+
     int rearElement() {
         if (isEmpty()) {
             cout << "Queue is empty. Cannot get rear element." << endl;
@@ -562,6 +573,8 @@ public:
         return rear->data;
         }
     }
+
+
     void display() {
         if (isEmpty()) {
             cout << "Queue is empty. Nothing to display." << endl;
@@ -574,6 +587,41 @@ public:
             temp = temp->next;
         }
         cout << endl;
+    }
+
+
+
+    void resize(int newCap) {
+        if (newCap < size) {
+            cout << "New capacity is less than current size. Cannot resize." << endl;
+            return;
+        }else{
+            capacity = newCapacity;
+        }    
+    }
+
+
+    void merge(Queue& q) {
+        while (!q.isEmpty()) {
+            enqueue(q.front->data);
+            q.dequeue();
+        }
+    }
+
+    void reverse() {
+        if (front == nullptr || front->next == nullptr) {
+            return;
+        }
+        Node* current = front;
+        Node* nextNode = nullptr;
+        Node* prevNode = nullptr;
+        while (current != nullptr) {
+            nextNode = current->next;
+            current->next = prevNode;
+            prevNode = current;
+            current = nextNode;
+        }
+        front = prevNode;
     }
 };
 
