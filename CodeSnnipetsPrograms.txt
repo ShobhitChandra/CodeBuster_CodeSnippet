@@ -450,6 +450,26 @@ int SumOfFirstNNaturalNo(int number){
     return sum;
 }
 
+
+#include <iostream>
+using namespace std;
+
+class Queue {
+private:
+    int capacity;
+    int front;
+    int rear;
+    int size;
+    int *items;
+
+public:
+    Queue(int cap) {
+        capacity = cap;
+        front = 0;
+        rear = -1;
+        size = 0;
+        items = new int[capacity];
+    }
 Prefix :
 Implementing a queue using Linked List.
 Description :
