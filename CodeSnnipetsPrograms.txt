@@ -450,6 +450,10 @@ int SumOfFirstNNaturalNo(int number){
     return sum;
 }
 
+Prefix :
+Implementing a queue using arrays.
+Description :
+This is the code for implementing a queue using an array.
 
 #include <iostream>
 using namespace std;
@@ -506,7 +510,75 @@ Queue* copy() {
         }
         return newQueue;
     }
+int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return -1; 
+        }
+        return items[front];
+    }
 
+void clear() {
+        front = 0;
+        rear = -1;
+        size = 0;
+    }
+
+int frontElement() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+        return items[front];
+    }
+
+int rearElement() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+        return items[rear];
+    }
+
+int getSize() {
+        return size;
+    }
+
+void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+        int i = front;
+        do {
+            cout << items[i] << " ";
+            i = (i + 1) % capacity;
+        } while (i != (rear + 1) % capacity);
+        cout << endl;
+    }
+    
+Queue* merge(Queue* otherQueue) {
+        Queue* mergedQueue = new Queue(capacity + otherQueue->capacity);
+        mergedQueue->front = front;
+        mergedQueue->rear = rear + otherQueue->size;
+
+        for (int i = front; i <= rear; ++i)
+            mergedQueue->enqueue(items[i]);
+
+        for (int i = otherQueue->front; i <= otherQueue->rear; ++i)
+            mergedQueue->enqueue(otherQueue->items[i]);
+
+        return mergedQueue;
+    }
+Queue* reverse() {
+        Queue* reversedQueue = new Queue(capacity);
+        int i = front;
+        while (i != (rear + 1) % capacity) {
+            reversedQueue->enqueue(items[i]);
+            i = (i - 1 + capacity) % capacity;
+        }
+        return reversedQueue;
+    }
 
 Prefix :
 Implementing a queue using Linked List.
