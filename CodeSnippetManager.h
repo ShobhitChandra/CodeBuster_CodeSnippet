@@ -4,12 +4,19 @@ using namespace std;
 
 #include <string>
 #include <map>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <sstream>
 
 class CodeSnippetManager{
   private:
-   map <string,string> snippets;
+  map<string,string> snippets;
+  string filePrefix;
+  unordered_map<string, unordered_set<string>> invertedIndex;
 
    public:
+    CodeSnippetManager(const string &prefix = "./snippets/");
 
     void Add_Snippets(string& tag,const string& code);
     void Retrieve_Snippets(const string& tag);
