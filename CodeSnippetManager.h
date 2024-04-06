@@ -24,6 +24,8 @@ class CodeSnippetManager{
     void RemoveFromInvertedIndex(const string &tag, const string &code);
     bool Save_to_file(const string& filename);
     bool Load_to_file(const string& filename);  
+   void LoadInvertedIndex();
+    void SaveInvertedIndex();
 
 
     
