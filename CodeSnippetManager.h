@@ -20,7 +20,8 @@ class CodeSnippetManager{
 
     void Add_Snippets(string& tag,const string& code);
     void Retrieve_Snippets(const string& tag);
-
+    bool DeleteSnippet(const string &tag);
+    void RemoveFromInvertedIndex(const string &tag, const string &code);
     bool Save_to_file(const string& filename);
     bool Load_to_file(const string& filename);  
 
