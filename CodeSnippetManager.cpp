@@ -1,12 +1,91 @@
 #include "CodeSnippetManager.h"
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
-void CodeSnippetManager:: Add_Snippets(string& tag, const string& code)
+CodeSnippetManager::CodeSnippetManager(const string &prefix) : filePrefix(prefix)
 {
-    snippets[tag] = code;
+    LoadFromFile();
+    LoadInvertedIndex();
 }
 
+CodeSnippetManager::~CodeSnippetManager()
+{
+    SaveToFile();
+    SaveInvertedIndex();
+}
+
+
+bool CodeSnippetManager::AddSnippet(const string &tag, const string &code)
+{
+    snippets[tag] = code;
+
+    // Update the inverted index
+    istringstream iss(code);
+    string word;
+    while (iss >> word)
+    {
+        invertedIndex[word].insert(tag);
+    }
+    UpdateInvertedIndex(tag, code);
+    SaveToFile();
+    SaveInvertedIndex();
+    return true;
+}
+
+bool CodeSnippetManager::DeleteSnippet(const string &tag)
+{
+    auto it = snippets.find(tag);
+    if (it != snippets.end())
+    {
+        // Remove the snippet from the inverted index
+        const string &code = it->second;
+        RemoveFromInvertedIndex(tag, code);
+        istringstream iss(code);
+        string word;
+        while (iss >> word)
+        {
+            auto indexIt = invertedIndex.find(word);
+            if (indexIt != invertedIndex.end())
+            {
+                indexIt->second.erase(tag);
+                if (indexIt->second.empty())
+                {
+                    invertedIndex.erase(indexIt);
+                }
+            }
+        }
+
+        snippets.erase(it);
+        fs::remove(filePrefix + tag + ".txt");
+        SaveToFile();
+        SaveInvertedIndex();
+        cout << "Snippet deleted successfully." << endl;
+        return true;
+    }
+    else
+    {
+        cout << "No snippet found for tag: " << tag << endl;
+        return false;
+    }
+}
+void CodeSnippetManager::RemoveFromInvertedIndex(const string &tag, const string &code)
+{
+    istringstream iss(code);
+    string word;
+    while (iss >> word)
+    {
+        auto it = invertedIndex.find(word);
+        if (it != invertedIndex.end())
+        {
+            it->second.erase(tag);
+            if (it->second.empty())
+            {
+                invertedIndex.erase(it);
+            }
+        }
+    }
+}
 void CodeSnippetManager::Retrieve_Snippets(const string& tag)
 {
     auto it = snippets.find(tag);
