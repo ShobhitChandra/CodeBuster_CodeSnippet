@@ -24,25 +24,26 @@ int main()
     int choice;
     cin >> choice;
 
-    if(choice == 1)
-    {
-      string tag,code;
-      cout << "Enter the tag";
-      cin >> tag;
-      cin.ignore();
+    if (choice == 1)
+        {
+            string tag, code;
+            cout << "Enter the tag: ";
+            cin >> tag;
+            tag = toLowerCase(tag);
+            cin.ignore();
 
-      cout << "Enter the code snippet:\n";
-      string line;
-      code = "";
+            cout << "Enter the code snippet:\n";
+            string line;
+            code = "";
 
-      while(getline(cin,line) && line!= "%%")
-      {
-        code=code+line+"\n";
-      }
-      manager.Add_Snippet(tag,code);
-      cout << "Snippets are added."<< endl;
-    
-    }
+            while (getline(cin, line) && line != "%%")
+            {
+                code = code + line + "\n";
+            }
+            manager.AddSnippet(tag, code);
+            cout << "Snippets are added." << endl;
+        }
+
   
     else if(choice == 2){
       string tag;
@@ -52,12 +53,24 @@ int main()
 
    }
 
-   else if(choice == 3)
-   {
-     manager.Save_to_file("snippets.txt");
-     cout << "Snippets saved to file.Exiting the program." << endl;
-     break;
-    }
+   else if (choice == 3)
+        {
+            string tag;
+            cout << "Enter the tag to Delete the snippet: ";
+            cin >> tag;
+            tag = toLowerCase(tag);
+            manager.DeleteSnippet(tag);
+            manager.SaveToFile();
+        }
+
+   else if (choice == 7)
+        {
+            manager.SaveToFile();
+            manager.SaveInvertedIndex();
+            cout
+                << "Snippets saved to file. Exiting the program." << endl;
+            break;
+        }
 
     else{
      cout << "Invalid choice.Choose a given option" << endl;
