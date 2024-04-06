@@ -86,16 +86,19 @@ void CodeSnippetManager::RemoveFromInvertedIndex(const string &tag, const string
         }
     }
 }
-void CodeSnippetManager::Retrieve_Snippets(const string& tag)
+bool CodeSnippetManager::RetrieveSnippet(const string &tag)
 {
     auto it = snippets.find(tag);
     if (it != snippets.end())
     {
-        cout << "Snippets for tag is: " << tag << ":\n" << it->second << endl;
+        cout << "Snippets for tag is: " << tag << ":\n"
+             << it->second << endl;
+        return true;
     }
     else
     {
         cout << "No snippets found for tag: " << tag << "." << endl;
+        return false;
     }
 }
 
@@ -180,4 +183,33 @@ void CodeSnippetManager::SaveInvertedIndex()
         }
         file.close();
     }
+}
+
+vector<string> CodeSnippetManager::SearchSnippets(const string &tagPrefix)
+{
+    vector<string> closestTags;
+    unordered_set<string> addedTags;
+    stringstream ss(tagPrefix);
+    string word;
+    while (ss >> word)
+    {
+        for (const auto &entry : snippets)
+        {
+            const string &tag = entry.first;
+            if (tag.substr(0, word.length()) == word && addedTags.find(tag) == addedTags.end())
+            {
+                if (word == "a" && word == "am")
+                {
+                    continue;
+                }
+                else
+                {
+                    closestTags.push_back(tag);
+                    addedTags.insert(tag);
+                }
+            }
+        }
+    }
+
+    return closestTags;
 }
