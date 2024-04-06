@@ -18,14 +18,15 @@ class CodeSnippetManager{
    public:
     CodeSnippetManager(const string &prefix = "./snippets/");
 
-    void Add_Snippets(string& tag,const string& code);
-    void Retrieve_Snippets(const string& tag);
-    bool DeleteSnippet(const string &tag);
-    void RemoveFromInvertedIndex(const string &tag, const string &code);
-    bool Save_to_file(const string& filename);
-    bool Load_to_file(const string& filename);  
-   void LoadInvertedIndex();
-    void SaveInvertedIndex();
+  void Add_Snippets(string& tag,const string& code);
+  void Retrieve_Snippets(const string& tag);
+  bool DeleteSnippet(const string &tag);
+  void RemoveFromInvertedIndex(const string &tag, const string &code);
+  bool Save_to_file(const string& filename);
+  bool Load_to_file(const string& filename);  
+  void LoadInvertedIndex();
+  void SaveInvertedIndex();
+  std::vector<std::string> SearchSnippets(const std::string &tagPrefix);
 
 
     
