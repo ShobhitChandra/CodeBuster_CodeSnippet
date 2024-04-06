@@ -101,55 +101,83 @@ void CodeSnippetManager::Retrieve_Snippets(const string& tag)
 
 bool CodeSnippetManager:: Save_to_file(const string& filename)
 {
-    ofstream outFile(filename);
-    if (!outFile)
+    for (const auto &entry : snippets)
     {
-        cout << "Error opening the file." << endl;
-        return false;
+        string filename = filePrefix + entry.first + ".txt";
+        ofstream outFile(filename);
+        if (!outFile)
+        {
+            cerr << "Error opening file: " << filename << endl;
+            return false;
+        }
+        outFile << entry.second;
+        outFile.close();
     }
-
-    for (const auto& entry : snippets)
-    {
-        outFile << "Tag: " << entry.first << endl;
-        outFile << "Code:\n" << entry.second << "\n";
-    }
-
-    outFile.close();
-    cout << "Snippets saved to the file: " << filename << endl;
     return true;
 }
 
 bool CodeSnippetManager:: Load_to_file(const string& filename)
 {
-    ifstream ifile(filename);
-    if (!ifile)
-    {
-        cout << "Error: Unable to open the file for reading." << endl;
-        return false;
-    }
-
     snippets.clear();
-    string line;
-    string currentTag;
-    string currentCode;
-
-    while (getline(ifile, line))
+    for (const auto &entry : fs::directory_iterator("./snippets/"))
     {
-        if (line.find("Tag: ") == 0)
+        if (entry.path().extension() == ".txt")
         {
-            currentTag = line.substr(5);
-        }
-        else if (line.find("Code: ") == 0)
-        {
-            currentCode = "";
-            while (getline(ifile, line) && line != "")
+            string filename = entry.path().filename().string();
+            string tag = filename.substr(0, filename.length() - 4);
+            ifstream inFile(entry.path());
+            if (!inFile)
             {
-                currentCode += line + "\n";
+                cerr << "Error opening file: " << filename << endl;
+                return false;
             }
-            snippets[currentTag] = currentCode;
+            string code((istreambuf_iterator<char>(inFile)), istreambuf_iterator<char>());
+            snippets[tag] = code;
+            inFile.close();
         }
     }
-    ifile.close();
-    cout << "Snippets loaded from file: " << filename << endl;
     return true;
+}
+
+void CodeSnippetManager::LoadInvertedIndex()
+{
+    ifstream file("inverted_index.txt");
+    if (file.is_open())
+    {
+        string line;
+        while (getline(file, line))
+        {
+            istringstream iss(line);
+            string word;
+            if (iss >> word)
+            {
+                string tag;
+                while (iss >> tag)
+                {
+                    invertedIndex[word].insert(tag);
+                }
+            }
+        }
+        file.close();
+    }
+}
+
+void CodeSnippetManager::SaveInvertedIndex()
+{
+    ofstream file("inverted_index.txt");
+    if (file.is_open())
+    {
+        for (const auto &entry : invertedIndex)
+        {
+            const string &word = entry.first;
+            const unordered_set<string> &tags = entry.second;
+            file << word;
+            for (const string &tag : tags)
+            {
+                file << " " << tag;
+            }
+            file << endl;
+        }
+        file.close();
+    }
 }
