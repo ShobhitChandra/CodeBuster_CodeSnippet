@@ -26,7 +26,7 @@ class CodeSnippetManager{
   bool Load_to_file(const string& filename);  
   void LoadInvertedIndex();
   void SaveInvertedIndex();
-  std::vector<std::string> SearchSnippets(const std::string &tagPrefix);
+  vector<string> SearchSnippets(const string &tagPrefix);
 
 
     
