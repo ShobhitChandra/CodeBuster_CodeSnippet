@@ -1,0 +1,19 @@
+class LinkedList *deletionByValue(class LinkedList *node, int value){
+    class LinkedList *p = node;
+    class LinkedList *q = node->next;
+    if(node->data == value){
+        node = node->next;
+        free(p);
+    }
+    else{
+        while(q->data != value && q->next!=NULL){
+            p = p->next;
+            q = q->next;
+        }
+        if(q->data == value){
+            p->next = q->next;
+            free(q);
+        }
+    }
+    return node;
+}
