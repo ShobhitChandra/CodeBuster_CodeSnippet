@@ -1,0 +1,13 @@
+class LinkedList *deletionAtIndex(class LinkedList *node, int index){
+    class LinkedList *p = node;
+    class LinkedList *q = node->next;
+    int i=0;
+    while(i != (index-1)){
+        p = p->next;
+        q = q->next;
+        i++;
+    }
+    p->next = q->next;
+    free(q);
+    return node;
+}
