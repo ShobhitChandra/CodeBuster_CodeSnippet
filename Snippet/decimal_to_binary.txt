@@ -1,0 +1,13 @@
+int DecimalToBinnaryConvertor ( int number_Decimal);
+int DecimalToBinnaryConvertor ( int number_Decimal){
+    int number_Binnary = 0;
+    int base = 1;
+    while (number_Decimal)
+    {
+        int digits = number_Decimal % 2;
+        number_Binnary = base * digits + number_Binnary ;
+        number_Decimal /= 2;
+        base *= 10;
+    }
+    return number_Binnary;
+}
