@@ -1,0 +1,12 @@
+int ReverseOfNumber(int number);
+int ReverseOfNumber(int number)
+{
+    int rev_number = 0;
+    while (number)
+    {
+        int digits = number % 10;
+        rev_number = rev_number * 10 + digits;
+        number /= 10;
+    }
+    return rev_number;
+}
