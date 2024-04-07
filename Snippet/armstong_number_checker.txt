@@ -1,0 +1,32 @@
+int numberofDigittsInthenumber(int number);
+int numberofDigittsInthenumber(int number)
+{
+    int i = 0;
+    while (number)
+    {
+        i++;
+        number /= 10;
+    }
+    return i;
+}
+void armstrongChecker(int number);
+void armstrongChecker(int number)
+{
+    double sum = 0;
+    int digits, temp;
+    temp = number;
+    while (number)
+    {
+        digits = number % 10;
+        sum += pow(digits,  numberofDigittsInthenumber(number));
+        number /= 10;
+    }
+    if (sum == temp)
+    {
+        cout << "The Number you enterd is a Armstrong number " << endl;
+    }
+    else
+    {
+        cout << "The Number you enterd in not an armstrong number " << endl;
+    }
+}
