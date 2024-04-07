@@ -1,0 +1,19 @@
+void PrimeNumberDisplayInRange(int lower_number, int upper_numer);
+void PrimeNumberDisplayInRange(int lower_number, int upper_numer)
+{
+    int j = 0;
+    for (int i = lower_number; i <= upper_numer; i++)
+    {
+        for (j = 2; j < i; j++)
+        {
+            if (i % j == 0)
+            {
+                break;
+            }
+        }
+        if (i == j)
+        {
+            cout << i << " ";
+        }
+    }
+}
