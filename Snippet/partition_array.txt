@@ -1,0 +1,28 @@
+int partition(vector<int> &arr, int low, int high)
+{
+    int pivot = arr[high];
+    int left = low;
+    int right = high;
+
+    while (left < right)
+    {
+        if (arr[left] > pivot && arr[right] < pivot)
+        {
+            swap(arr[left], arr[right]);
+            left++;
+            right--;
+        }
+        else if (arr[left] <= pivot)
+        {
+            left++;
+        }
+        else if (arr[right] >= pivot)
+        {
+            right--;
+        }
+    }
+
+    swap(arr[left], arr[high]);
+
+    return left;
+}
