@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-string toLowerCase(string input_string)
+std::string toLowerCase(std::string input_string)
   {
     std::string lowercased_string = "";
     for (char &c : input_string)
@@ -21,19 +21,21 @@ string toLowerCase(string input_string)
 
 int main()
 {
-   CodeSnippetManager manager;
+    CodeSnippetManager manager;
 
-   if(manager.Load_to_file("snippets.txt")){
-       cout << "Snippets are loaded from the file" << endl;
+    if (manager.LoadFromFile())
+    {
+        cout << "Snippets are loaded from the file" << endl;
+        manager.LoadInvertedIndex();
     }
-    else{
-    cout << "No saved snippets found.Starting with an empty manager" << endl;
-
+    else
+    {
+        cout << "No saved snippets found.Starting with an empty manager" << endl;
     }
 
- while(true)
- {
-    cout << ("------------------------------------") << endl;
+    while (true)
+    {
+        cout << ("------------------------------------") << endl;
         cout << ("|                START             |") << endl;
         cout << ("------------------------------------") << endl;
         cout << ("|  1.Add Snippet                   |") << endl;
@@ -44,7 +46,7 @@ int main()
         cout << ("|                                  |") << endl;
         cout << ("|  4.Updating Snippet              |") << endl;
         cout << ("|                                  |") << endl;
-        cout << ("|  5.What tag you are looking for? |") << endl;
+        cout << ("|  5.Search By Tag                 |") << endl;
         cout << ("|                                  |") << endl;
         cout << ("|  6.Search By Contents            |") << endl;
         cout << ("|                                  |") << endl;
@@ -59,8 +61,7 @@ int main()
         cin >> choice;
         cin.ignore();
 
-
-    if (choice == 1)
+        if (choice == 1)
         {
             string tag, code;
             cout << "Enter the tag: ";
@@ -80,17 +81,16 @@ int main()
             cout << "Snippets are added." << endl;
         }
 
-  
-    else if(choice == 2){
-      string tag;
-      cout << "Enter the tag to retrieve snippet: ";
-      cin >> tag;
-      tag = toLowerCase(tag);
-      manager.Retrieve_Snippet(tag);
+        else if (choice == 2)
+        {
+            string tag;
+            cout << "Enter the tag to retrieve snippet: ";
+            cin >> tag;
+            tag = toLowerCase(tag);
+            manager.RetrieveSnippet(tag);
+        }
 
-   }
-
-   else if (choice == 3)
+        else if (choice == 3)
         {
             string tag;
             cout << "Enter the tag to Delete the snippet: ";
@@ -99,13 +99,14 @@ int main()
             manager.DeleteSnippet(tag);
             manager.SaveToFile();
         }
-      
-   else if (choice == 4)
+
+        else if (choice == 4)
         {
             string tag, code;
             cout << "Enter the tag to Update the snippet: ";
             cin >> tag;
             tag = toLowerCase(tag);
+
             /**
              * Search for the snippet before asking for the update
              */
@@ -127,13 +128,14 @@ int main()
                 manager.UpdateSnippet(tag, code);
             }
         }
-      else if (choice == 5)
+
+        else if (choice == 5)
         {
             string tagPrefix;
             cout << "Tell me which snippet you want to search for: ";
             getline(cin,tagPrefix);
             tagPrefix = toLowerCase(tagPrefix);
-            vector<string> Results = manager.SearchSnippets(tagPrefix);
+            vector<string> Results = manager.SearchSnippetsByTag(tagPrefix);
             if (!Results.empty())
             {
                 cout << "Matching snippets:" << endl;
@@ -147,12 +149,13 @@ int main()
                 cout << "No snippets found for the given query." << endl;
             }
         }
-      else if (choice == 6)
+        else if (choice == 6)
         {
             string input;
             cout << "Enter keywords to search for snippets (separated by spaces): ";
             cin.ignore();
             getline(cin, input);
+            input = toLowerCase(input);
             istringstream iss(input);
             vector<string> keywords;
             string keyword;
@@ -174,8 +177,7 @@ int main()
                 cout << "No snippets found for the given query." << endl;
             }
         }
-         
-     else if (choice == 7)
+        else if (choice == 7)
         {
             manager.SaveToFile();
             manager.SaveInvertedIndex();
@@ -183,11 +185,11 @@ int main()
                 << "Snippets saved to file. Exiting the program." << endl;
             break;
         }
+        else
+        {
+            cout << "Invalid choice.Choose a given option" << endl;
+        }
+    }
 
-     else{
-     cout << "Invalid choice.Choose a given option" << endl;
-     }
-   }
-
- return 0;
+    return 0;
 }
