@@ -1,0 +1,22 @@
+int binarySearchRecursive(vector<int> &arr, int target, int low, int high)
+{
+    if (low > high)
+    {
+        return -1;
+    }
+
+    int mid = low + (high - low) / 2;
+
+    if (arr[mid] == target)
+    {
+        return mid;
+    }
+    else if (arr[mid] < target)
+    {
+        return binarySearchRecursive(arr, target, mid + 1, high);
+    }
+    else
+    {
+        return binarySearchRecursive(arr, target, low, mid - 1);
+    }
+}
