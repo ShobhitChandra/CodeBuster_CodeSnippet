@@ -1,0 +1,7 @@
+class LinkedList *insertAtfront(class LinkedList *node, int num){
+    LinkedList *ptr;
+    ptr = (class LinkedList*)malloc(sizeof(struct LinkedList));
+    ptr->data = num;
+    ptr->next = node;
+    return ptr;
+}
