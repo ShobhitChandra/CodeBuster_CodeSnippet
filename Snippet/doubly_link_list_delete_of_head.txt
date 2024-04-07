@@ -1,0 +1,7 @@
+class DoublyLinkedList *deletionOfHead(class DoublyLinkedList *node){
+    DoublyLinkedList *q = node->next;
+     q->prev = NULL;
+     free(node);
+   
+    return q;
+}
