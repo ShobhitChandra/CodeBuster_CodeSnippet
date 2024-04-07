@@ -213,3 +213,73 @@ vector<string> CodeSnippetManager::SearchSnippets(const string &tagPrefix)
 
     return closestTags;
 }
+
+bool CodeSnippetManager::UpdateSnippet(const string &tag, const string &code)
+{
+    auto it = snippets.find(tag);
+    if (it != snippets.end())
+    {
+        // Remove the old content from the inverted index
+        const string &oldCode = it->second;
+        RemoveFromInvertedIndex(tag, oldCode);
+        istringstream issOld(oldCode);
+        string word;
+        while (issOld >> word)
+        {
+            auto indexIt = invertedIndex.find(word);
+            if (indexIt != invertedIndex.end())
+            {
+                indexIt->second.erase(tag);
+                if (indexIt->second.empty())
+                {
+                    invertedIndex.erase(indexIt);
+                }
+            }
+        }
+
+        cout << "Snippets for tag is: " << tag << ":\n";
+
+        snippets[tag] = code;
+        UpdateInvertedIndex(tag, code);
+        istringstream issNew(code);
+        while (issNew >> word)
+        {
+            invertedIndex[word].insert(tag);
+        }
+        SaveToFile();
+        SaveInvertedIndex();
+        cout << "Snippet Updated Successfully!" << endl;
+        return true;
+    }
+    else
+    {
+        cout << "No snippets found for tag: " << tag << "." << endl;
+        return false;
+    }
+}
+
+void CodeSnippetManager::UpdateInvertedIndex(const string &tag, const string &code)
+{
+    istringstream iss(code);
+    string word;
+    while (iss >> word)
+    {
+        invertedIndex[word].insert(tag);
+    }
+}
+
+vector<string> CodeSnippetManager::SearchSnippetsByContent(const vector<string> &keywords)
+{
+    unordered_set<string> matchingTags;
+    for (const string &keyword : keywords)
+    {
+        auto it = invertedIndex.find(keyword);
+        if (it != invertedIndex.end())
+        {
+            matchingTags.insert(it->second.begin(), it->second.end());
+        }
+    }
+    return vector<string>(matchingTags.begin(), matchingTags.end());
+}
+
+
