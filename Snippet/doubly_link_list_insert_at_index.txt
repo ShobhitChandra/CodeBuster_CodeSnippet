@@ -1,0 +1,19 @@
+class DoublyLinkedList *insertionAtIndex(class DoublyLinkedList *node,int index,int value){
+    int i=0;
+    DoublyLinkedList *p = (class DoublyLinkedList *)malloc(sizeof(class DoublyLinkedList));
+    DoublyLinkedList *q = node;
+   
+    while(i != (index-1)){
+        q = q->next;
+        i++;
+    }
+    p->data = value;
+    p->prev = q;
+    p->next = q->next;
+    if (q->next != NULL){
+        q->next->prev = p;
+    }
+    q->next = p;
+   
+    return node;
+}
