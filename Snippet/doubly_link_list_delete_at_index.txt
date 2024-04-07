@@ -1,0 +1,42 @@
+class DoublyLinkedList *deletionAtIndex(DoublyLinkedList *node, int index) {
+    if (index < 0) {
+        cout << "Invalid index" << endl;
+        return node;
+    }
+
+    if (node == NULL) {
+        cout << "List is empty" << endl;
+        return node;
+    }
+
+    if (index == 0) {
+        DoublyLinkedList *q = node;
+        node = node->next;
+        if (node != NULL) {
+            node->prev = NULL;
+        }
+        delete q;
+        return node;
+    }
+
+    DoublyLinkedList *p = node;
+    int i = 0;
+    while (p != NULL && i < (index-1)) {
+        p = p->next;
+        i++;
+    }
+
+    if (p == NULL || p->next == NULL) {
+        cout << "Index out of range" << endl;
+        return node;
+    }
+
+    DoublyLinkedList *q = p->next;
+    p->next = q->next;
+    if (q->next != nullptr) {
+        q->next->prev = p;
+    }
+    delete q;
+
+    return node;
+}
