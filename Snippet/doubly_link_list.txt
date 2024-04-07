@@ -1,0 +1,14 @@
+class DoublyLinkedList{
+public:
+    int data;
+    class DoublyLinkedList *prev;
+    class DoublyLinkedList *next;
+};
+
+// Function for traversing in forward order Doubly linked list
+void doublyLinkedListTraversal(class DoublyLinkedList *node){
+    while(node!=NULL){
+        cout <<"Elements: " << node->data <<endl;
+        node = node->next;
+    }
+}
