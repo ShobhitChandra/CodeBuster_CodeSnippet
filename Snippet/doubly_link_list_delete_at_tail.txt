@@ -1,0 +1,11 @@
+class DoublyLinkedList *deletionOfTail(class DoublyLinkedList *node){
+    DoublyLinkedList *p = node;
+    while(p->next!=NULL){
+        p = p->next;
+    }
+     p->prev->next = NULL;
+     
+     free(p);
+     
+    return node;
+}
