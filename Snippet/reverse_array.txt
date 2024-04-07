@@ -1,0 +1,12 @@
+void reverseArray(vector<int> &v)
+{
+    int right = 0;
+    int left = v.size() - 1;
+
+    while (right < left)
+    {
+        swap(v[right], v[left]);
+    }
+
+    return;
+}
