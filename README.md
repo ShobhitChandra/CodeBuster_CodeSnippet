@@ -40,13 +40,13 @@ This application helps users to add , delete , update , search for the snippet a
 ## Contributions
 
 - **PRANSHU:** 
-   - Making Code snippets , making SaveToFile(), LoadFromFile, LoadInvertedIndex and SaveInvertedIndex functions and devoloping GUI based application .
+   - Making Code snippets , making SaveToFile() and  LoadFromFile, LoadInvertedIndex and SaveInvertedIndex functions.
 
 - **KARTHIK RAMAN**
    - Making Code snippets , making UpdateSnippet, UpdateInvertedIndex and SearchSnippetsByContent functions, part of coding of the project as well making Read.me file.
 
 - **SHOBHIT**
-   - Making Code snippets , making RetrieveSnippet and SearchSnippetsByTag functions and devoloping GUI based application .
+   - Making Code snippets , making RetrieveSnippet and SearchSnippetsByTag functions and used NLP for SearchSnippetsByTag.
 
 - **DHANUSH:** 
-   - Making Code snippets , making AddSnippet, DeleteSnippet and RemoveFromInvertedIndex functions, devoloping GUI based application .
+   - Making Code snippets , making AddSnippet, DeleteSnippet and RemoveFromInvertedIndex functions.
