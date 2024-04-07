@@ -5,12 +5,12 @@
 
 ## Project Members
 
-| Name                     | ID         |
-|--------------------------|------------|
-| Pranshu                  | 202301445  |
-| KARTHIK RAMAN            | 202301407  |
-| SHOBHIT                  | 202301403  |
-| DHANUSH                  | 202301483  |
+| Name                             | ID         |
+|----------------------------------|------------|
+| Pransu_Vadsmiya                  | 202301445  |
+| KARTHIK_RAMAN                    | 202301407  |
+| SHOBHIT_Choudhary                | 202301403  |
+| DHANUSH_Pillai                   | 202301483  |
 
 # CODE SNIPPET MANAGER
 Code Snippet Manager is an simple application build using C++ which allows you to organize and manage your code snippets . Code snippets are few lines of code that can be inserted into an application's code base and then it can be customized to meet the application's specific requirements.
