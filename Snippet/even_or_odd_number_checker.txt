@@ -1,0 +1,13 @@
+void EvenOddChecker(int);
+void EvenOddChecker(int num)
+{
+    if (num % 2 == 0)
+    {
+        cout << "The number enterd is even\n";
+    }
+    else
+    {
+        cout << "The number entered is odd\n";
+    }
+    return;
+}
