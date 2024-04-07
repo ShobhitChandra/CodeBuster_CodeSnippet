@@ -1,0 +1,14 @@
+int linearSearchRecursive(vector<int> &arr, int target, int index)
+{
+    if (index == arr.size())
+    {
+        return -1;
+    }
+
+    if (arr[index] == target)
+    {
+        return index;
+    }
+
+    return linearSearchRecursive(arr, target, index + 1);
+}
