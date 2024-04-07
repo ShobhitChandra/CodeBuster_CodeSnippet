@@ -1,0 +1,27 @@
+string DecimalToHexadecimalConvertor(int decimal_no);
+string DecimalToHexadecimalConvertor(int decimal_no)
+{
+    int x = 1;
+    string answer;
+    while (x <= decimal_no)
+    {
+        x *= 16;
+    }
+    x /= 16;
+    while (x > 0)
+    {
+        int last_Digit = decimal_no / x;
+        decimal_no -= last_Digit * x;
+        x /= 16;
+        if (last_Digit <= 9)
+        {
+            answer = answer + to_string(last_Digit);
+        }
+        else
+        {
+            char c = 'A' - last_Digit + 10;
+            answer.push_back(c);
+        }
+    }
+    return answer;
+}
