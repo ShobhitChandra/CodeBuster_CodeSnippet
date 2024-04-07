@@ -1,0 +1,18 @@
+void FibonnacciSeriesPrinter(int n);
+void FibonnacciSeriesPrinter(int n)
+{
+    int a = 0, b = 1;
+    cout << "The fibonnacci Series you wanted is :" << endl;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (i == 1)
+        {
+            cout << a << " ";
+        }
+        int temp = b;
+        cout << b << " ";
+        b += a;
+        a = temp;
+    }
+}
