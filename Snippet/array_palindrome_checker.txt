@@ -1,0 +1,12 @@
+bool isPalindrome(vector<int> v)
+{
+    for (int right = 0, left = v.size() - 1; right < left; right++, left--)
+    {
+        if (v[right] != v[left])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
