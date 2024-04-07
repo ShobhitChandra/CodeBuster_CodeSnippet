@@ -1,0 +1,6 @@
+class LinkedList *deletingHead(class LinkedList *node){
+    LinkedList *ptr = node;
+    node = node->next;
+    free(ptr);
+    return node;
+}
