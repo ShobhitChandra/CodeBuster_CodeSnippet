@@ -1,0 +1,15 @@
+class DoublyLinkedList *insertionAtTail(class DoublyLinkedList *node,int value){
+    DoublyLinkedList *p = (class DoublyLinkedList *)malloc(sizeof(class DoublyLinkedList));
+    DoublyLinkedList *q = node;
+    p->data = value;
+    p->next = NULL;
+   
+    while(q->next!=NULL){
+        q = q->next;
+    }
+   
+    q->next = p;
+    p->prev = q;
+   
+    return node;
+}
