@@ -1,0 +1,11 @@
+class LinkedList *deletionOfTail(class LinkedList *node){
+    class LinkedList *p = node;
+    class LinkedList *q = node->next;
+    while(q->next!=NULL){
+        p = p->next;
+        q = q->next;
+    }
+    p->next =  NULL;
+    free(q);
+    return node;
+}
