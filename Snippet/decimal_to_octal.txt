@@ -1,0 +1,13 @@
+int DecimalToOctalConvertor (int decimal);
+int DecimalToOctalConvertor (int decimal)
+{
+    int octal = 0;
+    while (decimal )
+    {
+        int remainder;
+        remainder = decimal % 8;
+        octal += remainder*10;
+        decimal /= 8; 
+    }
+    return octal;
+}
