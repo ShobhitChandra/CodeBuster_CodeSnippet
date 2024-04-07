@@ -1,0 +1,52 @@
+class stack_array{
+
+    public:
+    int top;
+    int top1;
+    int size;
+    int *arr;
+
+    stack_array(int size){
+        this -> size =size;
+        top = -1;
+        arr = new int[size];
+
+    }
+
+    void push(int element){
+        if(top1 - top > 1){
+            top++;
+            arr[top] = element;
+        }
+        else{
+            cout<<"Stack Overflow"<<endl;
+        }
+    }
+
+    void pop(){
+        if(top >=0){
+            top--;
+        }
+        else{
+            cout<<"Stack Underflow"<<endl;
+        }
+    }
+
+    void peek(){
+        if(top>=0){
+            cout<< arr[top]<<endl;
+        }
+        else{
+            cout<<"Stack is empty"<<endl;
+        }
+    }
+
+    void empty(){
+        if(top == -1){
+            cout<< "Stack is empty"<<endl;
+        }
+        else{
+            cout<<"Stack is not empty"<<endl;
+        }
+    }
+};
