@@ -1,0 +1,8 @@
+class LinkedList *insertAfterNode(class LinkedList *node, class LinkedList *PrevNode, int num){
+    class LinkedList *ptr;
+    ptr = (class LinkedList *)malloc(sizeof(class LinkedList));
+    ptr -> data = num;
+    ptr -> next = PrevNode->next;
+    PrevNode->next = ptr;
+    return node;
+}
