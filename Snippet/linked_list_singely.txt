@@ -1,0 +1,13 @@
+class LinkedList{
+public:
+    int data;
+    class LinkedList *next;
+};
+
+// Function for traversing the singly linked list
+void linkedListTraversal(class LinkedList *node){
+    while(node!=NULL){
+        cout <<"Elements: "<<node->data<<endl;
+        node = node->next;
+    }
+}
