@@ -1,0 +1,11 @@
+int numberofDigittsInthenumber(int number);
+int numberofDigittsInthenumber(int number)
+{
+    int i = 0;
+    while (number)
+    {
+        i++;
+        number /= 10;
+    }
+    return i;
+}
