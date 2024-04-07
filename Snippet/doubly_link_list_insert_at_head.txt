@@ -1,0 +1,9 @@
+class DoublyLinkedList *insertionAtHead(class DoublyLinkedList *node,int value){
+    DoublyLinkedList *p = (class DoublyLinkedList *)malloc(sizeof(class DoublyLinkedList));
+    p->data = value;
+    p->next = node;
+    p->prev = NULL;
+    node->prev = p;
+   
+    return p;
+}
