@@ -1,0 +1,20 @@
+int OctalToDecimalConvertor (int octal);
+int OctalToDecimalConvertor (int octal)
+{
+    int org_octal = octal;
+    int decimal = 0;
+    int No_of_dig = 0;
+    while (octal)
+    {
+        octal /= 10;
+        No_of_dig ++;
+    }
+    for (int i = 0; i < No_of_dig; i++)
+    {
+        int dig;
+        dig = org_octal%10;
+        decimal += dig*pow(8,i);
+        org_octal /= 10;
+    }
+    return decimal;
+}
