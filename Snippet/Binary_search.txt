@@ -1,0 +1,23 @@
+int BinarySearchInArray(int key, int size, int array[]);// a key to find ,the size of array,the array.
+int BinarySearchInArray(int key, int size, int array[])
+{
+    int start = 0;
+    int End = size;
+    while (End >= start)
+    {
+        int mid = (start + End) / 2;
+        if (key == array[mid])
+        {
+            return mid;
+        }
+        else if (key >= array[mid])
+        {
+            start = mid + 1;
+        }
+        else
+        {
+            End = mid - 1;
+        }
+    }
+    return -1;
+}
