@@ -1,0 +1,13 @@
+void FactorsPrinter(int number);
+void FactorsPrinter(int number)
+{
+    cout << "The factors of the the number have you enterd is :" << endl;
+    cout << "1";
+    for (int i = 2; i <= number; i++)
+    {
+        if (number % i == 0)
+        {
+            cout << " * " << i;
+        }
+    }
+}
