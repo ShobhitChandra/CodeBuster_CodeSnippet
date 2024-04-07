@@ -1,0 +1,26 @@
+class DoublyLinkedList *deletionByValue(DoublyLinkedList *node, int value) {
+    if (node == NULL) {
+        cout << "List is empty" << endl;
+        return node;
+    }
+    DoublyLinkedList *p = node;
+   
+    while(p != NULL  && p->data != value){
+        p = p->next;
+    }
+    if(p == NULL){
+        cout<<"Value not found"<<endl;
+        return node;
+    }
+    if (p->prev != NULL){
+        p->prev->next = p->next;
+    }
+    else {
+      node = p->next;
+    }
+    if (p->next != NULL){
+        p->next->prev = p->prev;
+    }
+    free(p);
+    return node;
+}
