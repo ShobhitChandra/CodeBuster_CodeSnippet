@@ -2,6 +2,23 @@
 #include <iostream>
 using namespace std;
 
+string toLowerCase(string input_string)
+  {
+    std::string lowercased_string = "";
+    for (char &c : input_string)
+    {
+      if (c >= 'A' && c <= 'Z')
+      {
+        lowercased_string += c + ('a' - 'A');
+      }
+      else
+      {
+        lowercased_string += c;
+      }
+    }
+    return lowercased_string;
+  }
+
 int main()
 {
    CodeSnippetManager manager;
@@ -27,7 +44,7 @@ int main()
         cout << ("|                                  |") << endl;
         cout << ("|  4.Updating Snippet              |") << endl;
         cout << ("|                                  |") << endl;
-        cout << ("|  5.Search By Tag                 |") << endl;
+        cout << ("|  5.What tag you are looking for? |") << endl;
         cout << ("|                                  |") << endl;
         cout << ("|  6.Search By Contents            |") << endl;
         cout << ("|                                  |") << endl;
@@ -42,7 +59,6 @@ int main()
         cin >> choice;
         cin.ignore();
 
-    
 
     if (choice == 1)
         {
@@ -69,6 +85,7 @@ int main()
       string tag;
       cout << "Enter the tag to retrieve snippet: ";
       cin >> tag;
+      tag = toLowerCase(tag);
       manager.Retrieve_Snippet(tag);
 
    }
@@ -83,12 +100,12 @@ int main()
             manager.SaveToFile();
         }
       
-else if (choice == 4)
+   else if (choice == 4)
         {
             string tag, code;
             cout << "Enter the tag to Update the snippet: ";
             cin >> tag;
-
+            tag = toLowerCase(tag);
             /**
              * Search for the snippet before asking for the update
              */
@@ -110,7 +127,26 @@ else if (choice == 4)
                 manager.UpdateSnippet(tag, code);
             }
         }
-   
+      else if (choice == 5)
+        {
+            string tagPrefix;
+            cout << "Tell me which snippet you want to search for: ";
+            getline(cin,tagPrefix);
+            tagPrefix = toLowerCase(tagPrefix);
+            vector<string> Results = manager.SearchSnippets(tagPrefix);
+            if (!Results.empty())
+            {
+                cout << "Matching snippets:" << endl;
+                for (const auto &tag : Results)
+                {
+                    cout << "- " << tag << endl;
+                }
+            }
+            else
+            {
+                cout << "No snippets found for the given query." << endl;
+            }
+        }
       else if (choice == 6)
         {
             string input;
@@ -139,7 +175,7 @@ else if (choice == 4)
             }
         }
          
-   else if (choice == 7)
+     else if (choice == 7)
         {
             manager.SaveToFile();
             manager.SaveInvertedIndex();
@@ -148,9 +184,9 @@ else if (choice == 4)
             break;
         }
 
-    else{
+     else{
      cout << "Invalid choice.Choose a given option" << endl;
-}
+     }
    }
 
  return 0;
