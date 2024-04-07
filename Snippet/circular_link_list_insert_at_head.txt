@@ -1,0 +1,12 @@
+class CircularLinkedList *insertionAtHead(class CircularLinkedList *node, int value){
+    class CircularLinkedList *q = node;
+    class CircularLinkedList *p;
+    p = (class CircularLinkedList*)malloc(sizeof(class CircularLinkedList));
+    p->data = value;
+    p->next = node;
+    do{
+        node = node->next;
+    } while(node->next!=q);
+    node->next = p;
+    return p;
+}
