@@ -1,0 +1,9 @@
+void MultiplicationTableDisplay(int);
+void MultiplicationTableDisplay(int number)
+{
+    for (int i = 1; i < 11; i++)
+    {
+        cout << number << " * " << i << " = " << i * number << endl;
+    }
+    return;
+}
