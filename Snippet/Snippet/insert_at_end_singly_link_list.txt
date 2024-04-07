@@ -1,0 +1,12 @@
+class LinkedList *insertAtEnd(class LinkedList *node, int num){
+    LinkedList *p = node;
+    LinkedList *ptr;
+    ptr = (class LinkedList*)malloc(sizeof(struct LinkedList));
+    while((p->next)!=NULL){
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->data = num;
+    ptr->next = NULL;
+    return node;
+}
