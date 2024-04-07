@@ -1,0 +1,28 @@
+void rotateArrayByK(vector<int> v, int k)
+{
+    int n = v.size();
+    k = k % n;
+
+    int low = 0;
+    int high = n - 1;
+
+    while (low < high)
+    {
+        swap(v[low], v[high]);
+    }
+
+    low = 0;
+    high = k - 1;
+    while (low < high)
+    {
+        swap(v[low], v[high]);
+    }
+
+    low = k;
+    high = n - 1;
+
+    while (low < high)
+    {
+        swap(v[low], v[high]);
+    }
+}
