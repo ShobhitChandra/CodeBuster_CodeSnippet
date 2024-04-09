@@ -40,7 +40,7 @@ This application helps users to add , delete , update , search for the snippet a
 ## Contributions
 
 - **PRANSHU:** 
-   - Making Code snippets , making SaveToFile() and  LoadFromFile, LoadInvertedIndex and SaveInvertedIndex functions.
+   - Making Code snippets , making SaveToFile() and  LoadFromFile, LoadInvertedIndex and SaveInvertedIndex functions.Helped in making documentation file.
 
 - **KARTHIK RAMAN**
    - Making Code snippets , making UpdateSnippet, UpdateInvertedIndex and SearchSnippetsByContent functions, part of coding of the project as well making Read.me file.
