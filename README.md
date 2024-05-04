@@ -50,3 +50,7 @@ This application helps users to add , delete , update , search for the snippet a
 
 - **DHANUSH:** 
    - Making Code snippets , making AddSnippet, DeleteSnippet and RemoveFromInvertedIndex functions.
+ 
+
+## Link to Capstone Challenge ppt
+- https://docs.google.com/presentation/d/1e4CvpFofTbqnBp744SR7rpAdS11HIz04rExXeDkVcss/edit?usp=sharing
