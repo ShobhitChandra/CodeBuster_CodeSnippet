@@ -9,7 +9,7 @@
 |----------------------------------|------------|
 | Pransu_Vadsmiya                  | 202301445  |
 | KARTHIK_RAMAN                    | 202301407  |
-| SHOBHIT_Choudhari                | 202301403  |
+| SHOBHIT_Chaudhari                | 202301403  |
 | DHANUSH_Pillai                   | 202301483  |
 
 # CODE SNIPPET MANAGER
